@@ -1,7 +1,5 @@
 from NimingCypher import NCrypter
-
-if __name__ == '__main__':
-    print('''
+print('''
    _  __ _         _
   / |/ /(_)__ _   (_)___  ___ _
  /    // //  ' \ / // _ \/ _ `/
@@ -11,6 +9,7 @@ Choose an encryption key :
     ''')
 Nkey=str(input("~: "))
 encrypter = NCrypter(Nkey)
+
 exit = False
 
 while exit == False:
