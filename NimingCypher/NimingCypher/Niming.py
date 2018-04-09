@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 ##    Usage:
 ##
@@ -8,31 +7,27 @@
 ##    >>> encrypted_str = crypter.crypt_text("simple string")
 ##    >>> print(encrypted_str)
 
-from NimingCypher.Chiffrement import ChiffrFile, DeChiffrFile, GenSum, dechiffrer, chiffrer
+from NimingCypher.Chiffrement import ChiffrFile, DeChiffrFile, Compress, Decompress, GenSum, dechiffrer, chiffrer
 from NimingCypher.GetWebText import getsite, tri_char
 
 #Toutes les explications sont dans les fichiers correspondants
 #==================================================================================================================================
 
-#utiliser pour autoriser l'accès à ces fonctions uniquement
-
 class NCrypter:
 
-    def __init__(self, Clef):
-        self._key = Clef #_key pour rendre le paramètre 'key' privé
-        try:
-            self.textfromweb = getsite(self._key)
-            self.charlist = tri_char(self.textfromweb)
-            print('Initialisation terminée !')
-        except:
-            print('Erreur de connexion !')
+    def __init__(self, clef):
+        result = self.setkey(clef)
+        if result == False:
+            return False
 
-    def refresh(self):
+    def setkey(self, clef):
+        self._key = clef #_key pour rendre le paramètre 'key' privé
         try:
             self.textfromweb = getsite(self._key)
             self.charlist = tri_char(self.textfromweb)
-            return True
+            #Initialisation terminée !
         except:
+            #Erreur de connexion !
             return False
 
     def crypt_file(self, path):
@@ -41,13 +36,15 @@ class NCrypter:
         file.close()
         Sum = GenSum(filebytes)
         del filebytes
-        fl = ChiffrFile(path,self.charlist)
+        fl = Compress(ChiffrFile(path,self.charlist))
         return (Sum, fl) #hash sha256 et le fichier chiffré
 
-    def decrypt_file(self, textencrypte, path):
+    def decrypt_file(self, textencrypte, path, open_end=False):
         from os import startfile
-        DeChiffrFile(textencrypte, self.textfromweb, self.charlist, path)
-        startfile(path)     #ouvre le fichier
+        decompress_data = Decompress(textencrypte)
+        DeChiffrFile(decompress_data, self.textfromweb, self.charlist, path)
+        if open_end == True:
+            startfile(path)     #ouvre le fichier
         file = open(path,"rb")    #pour le sum
         filebytes = file.read()
         Sum = GenSum(filebytes)

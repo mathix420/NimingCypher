@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You should need to install BeautifulSoup
 
 > Code :
 
@@ -17,11 +17,11 @@ What things you need to install the software and how to install them
 
 ### Installing
 
-This is the way to install Niming Crypter
+This is the way to install Niming Cypher
 
 > Code :
 
-		$ pip install NimingCrypter
+		$ pip install NimingCypher
 
 Now you know the way !
 
@@ -29,13 +29,13 @@ Now you know the way !
 
 ### Encrypt a string
 
-> Only tested with python >= 3.6
+Only tested with python >= 3.5
 
 > Code :
 
 	import NimingCypher as nc
 	crypter = nc.NCrypter("https://key.com")
-	encrypted_str = crypter.CryptText("simple string")
+	encrypted_str = crypter.crypt_text("simple string")
 	print(encrypted_str)
 
 ## Built With
@@ -48,4 +48,4 @@ Now you know the way !
 
 ## Licence
 
-This project is licensed under the MIT License - see the [LICENCE.txt](LICENCE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details

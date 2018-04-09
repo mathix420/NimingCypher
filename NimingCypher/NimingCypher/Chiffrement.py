@@ -7,8 +7,8 @@ from random import randint as rnd
 from NimingCypher.BaseConverter import HexToBase, BaseToHex
 import lzma             #utilitaire de compression de données basé sur l'algorithme LZMA
 
-__all__ = []
-threshold = 10          #utilisé pour définir le nb d'occurrence minimale nécessaire pour l'utilisation dans la base
+__all__ = []    #utilisé pour n'autoriser l'accès à aucune fonctions
+threshold = 10  #utilisé pour définir le nb d'occurrence minimale nécessaire pour l'utilisation dans la base
 
 def chiffrer(Clear_tx,listes_globales):
     liste_char, liste_pos = listes_globales
@@ -57,26 +57,27 @@ def FileToHex(chemin, alphabet, occurlist):
 def HexToFile(BaseFile, path, alphabet, occurlist):#inverse de FileToHex
     file = open(path,"wb+") # w --> write ; b --> byte ; + --> créer le fichier si inexistant
     Hx = BaseToHex(BaseFile, alphabet, occurlist, threshold) #base perso vers hexa
-    file.write(binascii.unhexlify(Hx))#on écrit le fichier en bytes converti auparavant
+    file.write(binascii.unhexlify(Hx))#on écrit le fichier en bytes converti auparavant compressé
     file.close()
     return "Hex to file OK !"
 
-def ChiffrFile(location, listes): #chiffre le fichier
-    liste_char,liste_pos = listes
-    hxTxt = FileToHex(location, liste_char, liste_pos)
-    return chiffrer(hxTxt, listes)
-
-def DeChiffrFile(textencrypted, textfromweb, listes, path): #dechiffre le fichier
-    liste_char,liste_pos = listes
-    dechTx = dechiffrer(textencrypted,textfromweb)
-    return(HexToFile(dechTx, path, liste_char, liste_pos))
-
 def Compress(data):
     dte = lzma.compress(data)
-    print(len(dte))
     return dte
 
 def Decompress(data):
     dtee = lzma.decompress(data)
-    print(len(dtee))
     return dtee
+
+def ChiffrFile(location, listes): #chiffre le fichier
+    liste_char,liste_pos = listes
+    hxTxt = FileToHex(location, liste_char, liste_pos)
+    chfr = chiffrer(hxTxt, listes)
+    compr_tx = Compress(chfr.encode())
+    return compr_tx
+
+def DeChiffrFile(textencrypted, textfromweb, listes, path): #dechiffre le fichier
+    liste_char,liste_pos = listes
+    decompress_tx = Decompress(textencrypted).decode()
+    dechTx = dechiffrer(decompress_tx, textfromweb)
+    return(HexToFile(dechTx, path, liste_char, liste_pos))

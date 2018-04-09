@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='NimingCypher',
-    version="1.5",
+    version="1.7.1",
     description='High security encryption module for instant messaging',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
