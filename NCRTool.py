@@ -1,4 +1,6 @@
 from NimingCypher import NCrypter
+
+
 print('''
    _  __ _         _
   / |/ /(_)__ _   (_)___  ___ _
@@ -9,19 +11,21 @@ Choose an encryption key :
     ''')
 Nkey=str(input("~: "))
 encrypter = NCrypter(Nkey)
-
-exit = False
+if encrypter != False:
+    exit = False
+else:
+    exit = True
 
 while exit == False:
     print('''
     What do you want ?
-
     1 - Encrypt text
     2 - Decrypt text
     3 - Encrypt file
     4 - Decrypt file
-
-    5 - Quit
+    5 - Change key
+    
+    6 - Quit
     ''')
     choice = int(input("~:"))
     if choice == 1:
@@ -56,5 +60,9 @@ while exit == False:
         del encrfile
         print("Sum SHA-256 : %s" % (sum))
     elif choice == 5:
+        print("Enter a new key :")
+        newkey = str(input("~:"))
+        encrypter.setkey(newkey)
+    elif choice == 6:
         exit = True
 
