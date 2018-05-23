@@ -29,10 +29,13 @@ Only tested with python >= 3.5
 
 > Code :
 
-	import NimingCypher as nc
-	crypter = nc.NCrypter("https://key.com")
+	from NimingCypher import NCrypter
+	crypter = NCrypter("https://key.com")
 	encrypted_str = crypter.crypt_text("simple string")
 	print(encrypted_str)
+
+	if crypter.setkey("https://newkey.com") == True:
+		print("Successful !")
 
 ## Built With
 
