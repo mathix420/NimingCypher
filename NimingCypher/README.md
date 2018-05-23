@@ -9,11 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You should need to install BeautifulSoup
-
-> Code :
-
-		$ pip install beautifulsoup4
+All the prerequisites are installed with the command below !
 
 ### Installing
 

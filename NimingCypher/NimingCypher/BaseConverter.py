@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 __all__ = [] #utilisé pour n'autoriser l'accès à aucune fonctions
 
 def GetAlphabet(AlphaList, OccList, threshold):
@@ -16,20 +15,30 @@ def GetAlphabet(AlphaList, OccList, threshold):
     return alphabet
     # retourne un nouvel alphabet contenant tout les caractères ayant au moins n occurences avec n=threshold
 
-def HexToBase(Hexa, AlphabetList, OccurList, threshold=10):
-    number = int(Hexa,16) #base 16 vers base 10
+def IntToBase(Number, AlphabetList, OccurList, threshold=10):
     alphabet = GetAlphabet(AlphabetList, OccurList, threshold)
-    base = ''
+    b_nbr = len(alphabet) - 1
+    base, out = [], ''
+    delimiter = str(alphabet[-1])
 
+    for trame in Number:
+        n = int(trame)
+        while n > 0:
+            n, r = divmod(n,b_nbr)    # divise le nombre par la base et met le reste dans i
+            base.append(alphabet[r])           # ajoute a la base le caractère correspondant au code i
+        out += ''.join(base[::-1]) + delimiter
+        base=[]
 #génère une base alphanumérique afin de réduire la taille des fichier et de réduire les répétitions d'occurences
-    while number != 0:
-        number,i = divmod(number,len(alphabet)) # divise le nombre par la base et met le reste dans i
-        base = alphabet[i] + base               # ajoute a la base le caractère correspondant au code i
-    return base
+    return out[:-1]
 
-def BaseToHex(base, AlphabetList, OccurList, threshold=10): #inverse de hex to base
+def BaseToInt(base, AlphabetList, OccurList, threshold=10): #inverse de hex to base
     alphabet = GetAlphabet(AlphabetList, OccurList, threshold)
-    out = 0
-    for i in base: # on multiplie la sortie par la base en ajoutant la valeur correspondant au caractère
-        out = out * len(alphabet) + alphabet.index(i)
-    return str(hex(out))[2:] #retourne tout sauf les deux premiers caractères "0x"
+    b_nbr = len(alphabet) - 1
+    delimiter = str(alphabet[-1])
+    fin = []
+    for trame in base.split(delimiter):
+        out = 0
+        for i in trame: # on multiplie la sortie par la base en ajoutant la valeur correspondant au caractère
+            out = b_nbr * out + alphabet.index(i)
+        fin.append(out)
+    return fin
