@@ -5,7 +5,7 @@ import hashlib          #https://docs.python.org/fr/3.6/library/hashlib.html
 import lzma             #utilitaire de compression de données basé sur l'algorithme LZMA
 
 from NimingCypher.BaseConverter import IntToBase, BaseToInt
-from random import choice
+from secrets import choice
 
 __all__ = []    #utilisé pour n'autoriser l'accès à aucune fonctions
 threshold = 10  #utilisé pour définir le nb d'occurrence minimale nécessaire pour l'utilisation dans la base
