@@ -29,7 +29,7 @@ def chiffrer(Clear_tx, listes_globales=[]):
 
     final_gen=intersperse(good_ch,' ')
 
-    """OLD METHOD - On passe de 10s à 2.2s avec le nv code"""
+    """ANCIENNE METHODE - On passe de 10s à 2.2s avec le nv code"""
 ##    final_tx = ""
 ##    not_found = 0
 ##    for ch in Clear_tx: #pour chaque caractères
@@ -49,7 +49,7 @@ def chiffrer(Clear_tx, listes_globales=[]):
 ##            final_tx += "0000 "
 ##    print(str(not_found) + ' caractères non trouvés !')
 ##    return(final_tx[:-1]) #retourne tout sauf le dernier caractère " "
-    """END OLD METHOD"""
+    """FIN ANCIENNE METHODE"""
     print('%s caractères non trouvés !' % (bad_ch))
     return ''.join(final_gen)
 
@@ -82,7 +82,8 @@ def BaseToFile(base_data , path, alphabet, occurlist):#inverse de FileToBase
     try:
         file = open(path,"wb+") # w --> write ; b --> byte ; + --> créer le fichier si inexistant
         int_data = BaseToInt(base_data, alphabet, occurlist, threshold) #base perso vers hexa
-        file.write(b''.join([int(i).to_bytes(chunk_size, byteorder='little') for i in int_data]))#on écrit le fichier en bytes converti auparavant compressé
+        #on écrit le tableau d'integer converti en bytes dans le fichier en supprimant les bytes nuls en fin de ligne
+        file.write(b''.join([int(i).to_bytes(chunk_size, byteorder='little') for i in int_data]).rstrip(b'\x00'))
         file.close()
         return True     #aucune erreur
     except:
