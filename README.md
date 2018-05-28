@@ -1,7 +1,7 @@
 
 # Niming Cypher
 
-**High security encryption module for instant messaging**
+**Encryption module for instant messaging**
 
 ## Getting Started
 
