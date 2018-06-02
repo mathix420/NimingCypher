@@ -47,6 +47,6 @@ For more example see [Wiki](https://github.com/mathix420/NimingCypher/wiki)
 
 * **Gissinger Arnaud** - *also known as Mathix*
 
-## Licence
+## License
 
 This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
