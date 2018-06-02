@@ -27,7 +27,7 @@ Now you know the way !
 
 Only tested with python >= 3.5
 
-For more example see [Wiki](https://github.com/mathix420/NimingCypher/)
+For more example see [Wiki](https://github.com/mathix420/NimingCypher/wiki)
 
 > Code :
 
