@@ -17,7 +17,7 @@ This is the way to install Niming Cypher
 
 > Code :
 
-		$ pip install NimingCypher
+    $ pip install NimingCypher
 
 Now you know the way !
 
@@ -31,13 +31,13 @@ For more example see [Wiki](https://github.com/mathix420/NimingCypher/)
 
 > Code :
 
-	from NimingCypher import NCrypter
-	crypter = NCrypter("https://key.com")
-	encrypted_str = crypter.crypt_text("simple string")
-	print(encrypted_str)
+    from NimingCypher import NCrypter
+    crypter = NCrypter("https://key.com")
+    encrypted_str = crypter.crypt_text("simple string")
+    print(encrypted_str)
 
-	if crypter.setkey("https://newkey.com") == True:
-		print("Successful !")
+    if crypter.setkey("https://newkey.com") == True:
+        print("Successful !")
 
 ## Built With
 
