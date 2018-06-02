@@ -1,4 +1,3 @@
-
 # Niming Cypher
 
 **Encryption module for instant messaging**
