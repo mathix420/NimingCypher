@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
 
 setup(
     name='NimingCypher',
-    version="2.0.3",
-    description='High security encryption module for instant messaging',
+    version="2.0.4",
+    description='Encryption module for instant messaging',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Arnaud Gissinger',

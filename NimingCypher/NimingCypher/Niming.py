@@ -1,11 +1,13 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-##    Usage:
-##
-##    >>> from NimingCypher import NCrypter
-##    >>> crypter = NCrypter("https://key.com")
-##    >>> encrypted_str = crypter.crypt_text("simple string")
-##    >>> print(encrypted_str)
+'''    Usage:
+
+    >>> from NimingCypher import NCrypter
+    >>> crypter = NCrypter("https://key.com")
+    >>> encrypted_str = crypter.crypt_text("simple string")
+    >>> print(encrypted_str)
+'''
 
 from NimingCypher.Chiffrement import ChiffrFile, DeChiffrFile, Compress, Decompress, GenSum, dechiffrer, chiffrer
 from NimingCypher.GetWebText import getsite, tri_char
@@ -32,7 +34,7 @@ class NCrypter:
         file = open(path,"rb")
         filebytes = file.read()
         file.close()
-        Sum = GenSum(filebytes)
+        Sum = GenSum(filebytes.rstrip(b'\x00'))#supprime les bytes nuls de fin de ligne
         del filebytes
         fl = ChiffrFile(path, self.charlist)
         return (Sum, fl) #hash sha256 et le fichier chiffré

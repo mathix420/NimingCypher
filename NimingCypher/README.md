@@ -1,7 +1,6 @@
-
 # Niming Cypher
 
-**High security encryption module for instant messaging**
+**Encryption module for instant messaging**
 
 ## Getting Started
 
@@ -17,7 +16,7 @@ This is the way to install Niming Cypher
 
 > Code :
 
-		$ pip install NimingCypher
+    $ pip install NimingCypher
 
 Now you know the way !
 
@@ -27,15 +26,17 @@ Now you know the way !
 
 Only tested with python >= 3.5
 
+For more example see [Wiki](https://github.com/mathix420/NimingCypher/wiki)
+
 > Code :
 
-	from NimingCypher import NCrypter
-	crypter = NCrypter("https://key.com")
-	encrypted_str = crypter.crypt_text("simple string")
-	print(encrypted_str)
+    from NimingCypher import NCrypter
+    crypter = NCrypter("https://key.com")
+    encrypted_str = crypter.crypt_text("simple string")
+    print(encrypted_str)
 
-	if crypter.setkey("https://newkey.com") == True:
-		print("Successful !")
+    if crypter.setkey("https://newkey.com") == True:
+        print("Successful !")
 
 ## Built With
 
@@ -45,6 +46,6 @@ Only tested with python >= 3.5
 
 * **Gissinger Arnaud** - *also known as Mathix*
 
-## Licence
+## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](https://github.com/mathix420/NimingCypher/blob/master/LICENSE) file for details

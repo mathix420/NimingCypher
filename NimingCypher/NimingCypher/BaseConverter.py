@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 __all__ = [] #utilisé pour n'autoriser l'accès à aucune fonctions
 
 def GetAlphabet(AlphaList, OccList, threshold):

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import binascii         #https://docs.python.org/3/library/binascii.html
 import hashlib          #https://docs.python.org/fr/3.6/library/hashlib.html
@@ -50,6 +51,7 @@ def chiffrer(Clear_tx, listes_globales=[]):
 ##    print(str(not_found) + ' caractères non trouvés !')
 ##    return(final_tx[:-1]) #retourne tout sauf le dernier caractère " "
     """FIN ANCIENNE METHODE"""
+    
     print('%s caractères non trouvés !' % (bad_ch))
     return ''.join(final_gen)
 
