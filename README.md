@@ -1,3 +1,5 @@
+<img src="http://i.imgur.com/p26bFim.png" width="150" align="right">
+
 # Niming Cypher
 
 **Encryption module for instant messaging**
