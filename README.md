@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/p26bFim.png" width="150" align="right">
+<img src="http://i.imgur.com/p26bFim.png" width="150" align="right" alt="IconNiming">
 
 # Niming Cypher
 
