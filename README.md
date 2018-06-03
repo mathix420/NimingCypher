@@ -48,4 +48,4 @@ For more example see [Wiki](https://github.com/mathix420/NimingCypher/wiki)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](https://github.com/mathix420/NimingCypher/blob/master/LICENSE) file for details
