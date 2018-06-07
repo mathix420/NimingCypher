@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='NimingCypher',
-    version="2.0.4",
+    version="2.5.0",
     description='Encryption module for instant messaging',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -32,6 +32,6 @@ setup(
         'Programming Language :: Python :: 3',
         ],
     keywords='encryption module instant messaging free',
-    install_requires=['beautifulsoup4'],
+    install_requires=['beautifulsoup4','rsa'],
     packages=find_packages(),
 )

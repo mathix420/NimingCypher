@@ -8,7 +8,8 @@ from bs4.element import Comment
 __all__ = [] #utilisé pour n'autoriser l'accès à aucune fonctions
 
 def tag_visible(element):
-    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']: # si la balise mère est l'une d'elle
+    not_text_flag = ['style', 'script', 'head', 'title', 'meta', '[document]']
+    if element.parent.name in not_text_flag: # si la balise mère est l'une d'elle
         return False                                                                            #retourner False
     if isinstance(element, Comment): #si l'élément est un commentaire
         return False                    #retourner False

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__all__ = [] #utilisé pour n'autoriser l'accès à aucune fonctions
+__all__ = []
 
 def GetAlphabet(AlphaList, OccList, threshold):
 #demande la liste des caractères trouvés sur la pages et les occurences de ces mêmes caractères

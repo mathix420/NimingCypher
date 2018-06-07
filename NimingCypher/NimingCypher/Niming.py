@@ -9,8 +9,9 @@
     >>> print(encrypted_str)
 '''
 
-from NimingCypher.Chiffrement import ChiffrFile, DeChiffrFile, Compress, Decompress, GenSum, dechiffrer, chiffrer
+from NimingCypher.Chiffrement import ChiffrData, DeChiffrData, GenSum, Dechiffrer, Chiffrer
 from NimingCypher.GetWebText import getsite, tri_char
+from os import startfile
 
 #Toutes les explications sont dans les fichiers correspondants
 #==================================================================================================================================
@@ -33,30 +34,30 @@ class NCrypter:
     def crypt_file(self, path):
         file = open(path,"rb")
         filebytes = file.read()
-        file.close()
         Sum = GenSum(filebytes.rstrip(b'\x00'))#supprime les bytes nuls de fin de ligne
+        fl = ChiffrData(filebytes, self.charlist)
+        file.close()
         del filebytes
-        fl = ChiffrFile(path, self.charlist)
         return (Sum, fl) #hash sha256 et le fichier chiffré
 
     def decrypt_file(self, textencrypte, path, open_end=False):
-        from os import startfile
-        if DeChiffrFile(textencrypte, self.textfromweb, self.charlist, path):
+        clear_bytes = DeChiffrData(textencrypte, self.textfromweb, self.charlist)
+        if clear_bytes != None:
+            sf = open(path, "wb+")
+            sf.write(clear_bytes)
+            sf.close()
             if open_end == True:
                 startfile(path)     #ouvre le fichier
-            file = open(path,"rb")    #pour le sum
-            filebytes = file.read()
-            Sum = GenSum(filebytes)
-            file.close()
-            del filebytes
+            Sum = GenSum(clear_bytes)
+            del clear_bytes
             return Sum
         else:
             return "Erreur lors du déchiffrement !"
 
     def crypt_text(self, text):
-        return chiffrer(text,self.charlist)
+        return ChiffrData(text.encode(), self.charlist)
 
-    def decrypt_text(self, text):
-        return dechiffrer(text, self.textfromweb)
+    def decrypt_text(self, text_bytes):
+        return DeChiffrData(text_bytes, self.textfromweb, self.charlist)
 
 #==================================================================================================================================

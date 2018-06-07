@@ -1,3 +1,5 @@
+<img src="http://i.imgur.com/p26bFim.png" width="150" align="right" alt="IconNiming">
+
 # Niming Cypher
 
 **Encryption module for instant messaging**
@@ -29,15 +31,15 @@ Only tested with python >= 3.5
 For more example see [Wiki](https://github.com/mathix420/NimingCypher/wiki)
 
 > Code :
+```python
+from NimingCypher import NCrypter
+crypter = NCrypter("https://key.com")
+encrypted_str = crypter.crypt_text("simple string")
+print(encrypted_str)
 
-    from NimingCypher import NCrypter
-    crypter = NCrypter("https://key.com")
-    encrypted_str = crypter.crypt_text("simple string")
-    print(encrypted_str)
-
-    if crypter.setkey("https://newkey.com") == True:
-        print("Successful !")
-
+if crypter.setkey("https://newkey.com") == True:
+    print("Successful !")
+```
 ## Built With
 
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) - Parsing module
