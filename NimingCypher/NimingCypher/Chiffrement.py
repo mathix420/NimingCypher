@@ -27,13 +27,16 @@ def Chiffrer(clear_tx, listes_globales=[]):
 
 def Dechiffrer(encrypted_tx, TextFromWeb):
     out = []
+    error = False
     for ch in encrypted_tx.split(' '): #pour chaque bloc hexa
         if ch != '': #vérifie que le bloc soit bien existant
             try:
                 out.append(str(TextFromWeb[int(ch,16)])) #retourne le caractère qui correspond à la position en hexa
             except:
-                print("Erreur lors du déchiffrement !")
+                error = True
                 out.append('?')
+    if error:
+        print("Erreur lors du déchiffrement !")
     return ''.join(out)
 
 def GenSum(file_bytes): #génère un hash en sha256 pour la vérification des fichiers appelé sum

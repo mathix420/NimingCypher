@@ -54,10 +54,34 @@ class NCrypter:
         else:
             return "Erreur lors du déchiffrement !"
 
+    def get_security_level(self):
+        c = 0
+        for l in self.charlist[1]:
+            c += len(l)
+        security_lvl = int(c/len(self.charlist[1]))
+        if security_lvl < 120:
+            return "Poor security : %s" % security_lvl
+        elif security_lvl >= 120 and security_lvl < 300:
+            return "Medium security : %s" % security_lvl
+        elif security_lvl >= 300 and security_lvl < 600:
+            return "Pretty good security : %s" % security_lvl
+        elif security_lvl >= 600 and security_lvl < 1000:
+            return "High security : %s" % security_lvl
+        elif security_lvl >= 1000 and security_lvl < 2000:
+            return "Verry high security : %s" % security_lvl
+        elif security_lvl >= 2000:
+            return "Top level security : %s" % security_lvl
+
     def crypt_text(self, text):
         return ChiffrData(text.encode(), self.charlist)
 
     def decrypt_text(self, text_bytes):
         return DeChiffrData(text_bytes, self.textfromweb, self.charlist)
+
+    def key_hash(self):
+        return self.crypt_text(GenSum(self.textfromweb.encode()))
+
+    def check_hash(self, encrypted_hash):
+        return GenSum(self.textfromweb.encode()).encode() == self.decrypt_text(encrypted_hash)
 
 #==================================================================================================================================

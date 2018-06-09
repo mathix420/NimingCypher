@@ -2,10 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import urllib.request
+from urllib.parse import urlparse, quote, unquote
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 
 __all__ = [] #utilisé pour n'autoriser l'accès à aucune fonctions
+
+def encode_url(raw_url):
+    url_parsed = urlparse(unquote(raw_url))
+    return ''.join(url_parsed[0]) + '://' + ''.join(url_parsed[1]) + quote(''.join(url_parsed[2:]))
 
 def tag_visible(element):
     not_text_flag = ['style', 'script', 'head', 'title', 'meta', '[document]']
@@ -38,6 +43,7 @@ def tri_char(texte):
 
 def getsite(url):
     #ouvre et accède au dernier stade de chargement de la page avant de lire son contenu
+    url = encode_url(url)
     html = urllib.request.urlopen(url).read()
     text = html_to_text(html) #parse la page
     return text #retourne le texte
