@@ -16,3 +16,12 @@ class NExchange:
 
     def decrypt_key(self, encrypted_key):
         return rsa.decrypt(from64(encrypted_key[25:-23].encode()), self._private).decode()
+
+    def identity_proof(self, username):
+        return '###NIMING-IDENTITY-PROOF###%s###END-IDENTITY-PROOF###' % to64(rsa.sign(username.encode(), self._private, 'SHA-1')).decode()
+
+    def verify_identity(self, proof, emitter_name, emitter_public_key):
+        splitted_key = emitter_public_key[32:-30].split("@@")
+        emit_public = rsa.PublicKey(int(splitted_key[0]), int(splitted_key[1]))
+        proof = from64(proof[27:-24].encode())
+        return rsa.verify(emitter_name.encode(), proof, emit_public)
